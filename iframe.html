@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Camera Access</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      display: none;
+    }
+    
+    canvas {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      display: none;
+      pointer-events: none;
+    }
+    
+    #status {
+      text-align: center;
+      color: white;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    
+    #detectionStatus {
+      text-align: center;
+      color: white;
+      font-size: 11px;
+      margin-top: 3px;
+      font-weight: bold;
+      min-height: 16px;
+    }
+    
+    #detectionStatus.warning {
+      color: #ffeb3b;
+    }
+    
+    #detectionStatus.clear {
+      color: #4caf50;
+    }
+    
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+      background: white;
+      color: #667eea;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <video id="video" autoplay playsinline></video>
+  <canvas id="canvas"></canvas>
+  <button id="startCamera">Start Camera</button>
+  <div id="status">Camera inactive</div>
+  <div id="detectionStatus"></div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+  <script src="iframe.js"></script>
+</body>
+</html>

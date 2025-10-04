@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Guardian",
+  "version": "2.0",
+  "description": "Pomodoro timer with website blocking and ad blocking",
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "tabs",
+    "alarms",
+    "notifications",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["iframe.html"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "distraction_blocking",
+        "enabled": false,
+        "path": "distraction_rules.json"
+      },
+      {
+        "id": "ad_blocking",
+        "enabled": true,
+        "path": "ad_rules.json"
+      }
+    ]
+  }
+}
